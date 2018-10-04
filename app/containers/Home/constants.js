@@ -1,0 +1,11 @@
+/*
+ *
+ * Home constants
+ *
+ */
+
+export const LOAD_LAST_SIX_BLOG_POSTS = 'app/Home/LOAD_LAST_SIX_BLOG_POSTS';
+export const LOAD_LAST_SIX_BLOG_POSTS_SUCCESS =
+  'app/Home/LOAD_LAST_SIX_BLOG_POSTS_SUCCESS';
+export const LOAD_LAST_SIX_BLOG_POSTS_ERROR =
+  'app/Home/LOAD_LAST_SIX_BLOG_POSTS_ERROR';
