@@ -93,7 +93,7 @@ export class Navigation extends React.Component {
         <Toolbar variant="dense" className={classes.toolbarSecondary}>
           {categories.map(category => (
             <Typography
-              color="gray"
+              color="secondary"
               noWrap
               key={category.id}
               onClick={() => this.gotoCategory(category)}

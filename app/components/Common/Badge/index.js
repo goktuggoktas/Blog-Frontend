@@ -8,9 +8,11 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import badgeStyle from './style';
 
 function Badge({ ...props }) {
-  const { classes, color, children } = props;
+  const { classes, color, children, onClick } = props;
   return (
-    <span className={`${classes.badge} ${classes[color]}`}>{children}</span>
+    <span className={`${classes.badge} ${classes[color]}`} onClick={onClick}>
+      {children}
+    </span>
   );
 }
 
@@ -21,6 +23,7 @@ Badge.defaultProps = {
 Badge.propTypes = {
   classes: PropTypes.object.isRequired,
   children: PropTypes.any,
+  onClick: PropTypes.func,
   color: PropTypes.oneOf([
     'primary',
     'warning',

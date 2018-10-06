@@ -7,6 +7,10 @@ const makeSelectBlog = () =>
   createSelector(selectBlogDomain, substate =>
     substate.get('blogPosts').toJS(),
   );
+const makeSelectLoading = () =>
+  createSelector(selectBlogDomain, substate => substate.get('loading'));
 
-export default makeSelectBlog;
-export { selectBlogDomain };
+const makeSelectError = () =>
+  createSelector(selectBlogDomain, substate => substate.get('error'));
+
+export { selectBlogDomain, makeSelectBlog, makeSelectLoading, makeSelectError };

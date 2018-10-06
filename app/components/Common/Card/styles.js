@@ -17,6 +17,7 @@ const styles = () => ({
   },
   card: {
     display: 'flex',
+    height: '250px',
   },
   cardDetails: {
     flex: 1,

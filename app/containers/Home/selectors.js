@@ -8,4 +8,15 @@ const makeSelectLastSixBlog = () =>
     substate.get('blogPosts').toJS(),
   );
 
-export { selectHomeDomain, makeSelectLastSixBlog };
+const makeSelectLoading = () =>
+  createSelector(selectHomeDomain, substate => substate.get('loading'));
+
+const makeSelectError = () =>
+  createSelector(selectHomeDomain, substate => substate.get('error'));
+
+export {
+  selectHomeDomain,
+  makeSelectLastSixBlog,
+  makeSelectLoading,
+  makeSelectError,
+};

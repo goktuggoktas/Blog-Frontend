@@ -12,7 +12,7 @@ import Badge from '../Badge';
 import styles from './styles';
 
 function BlogCardContainer(props) {
-  const { classes, blogs, onClick } = props;
+  const { classes, blogs, onClick, tagFilter } = props;
   return (
     <Grid container spacing={40} className={classes.cardGrid} style={{}}>
       {blogs.map(blog => (
@@ -27,9 +27,15 @@ function BlogCardContainer(props) {
                 >
                   {blog.title}
                 </Typography>
-                <Typography variant="subheading" color="textSecondary">
+                <Typography
+                  variant="subheading"
+                  color="textSecondary"
+                  style={{ height: '60px' }}
+                >
                   {blog.tag_list.map(tag => (
-                    <Badge color="success"> {tag}</Badge>
+                    <Badge color="success" onClick={() => tagFilter(tag)}>
+                      {tag}
+                    </Badge>
                   ))}
                 </Typography>
                 <Typography
@@ -67,6 +73,7 @@ BlogCardContainer.propTypes = {
   classes: PropTypes.object.isRequired,
   blogs: PropTypes.array,
   onClick: PropTypes.func,
+  tagFilter: PropTypes.func,
 };
 
 export default withStyles(styles)(BlogCardContainer);

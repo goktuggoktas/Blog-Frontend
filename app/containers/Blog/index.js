@@ -11,11 +11,15 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectBlog from './selectors';
+import {
+  makeSelectBlog,
+  makeSelectLoading,
+  makeSelectError,
+} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import BlogCardContainer from '../../components/Common/Card';
 import { loadBlogPosts } from './actions';
+import BlogList from '../../components/Spesific/List';
 
 /* eslint-disable react/prefer-stateless-function */
 export class Blog extends React.Component {
@@ -33,14 +37,15 @@ export class Blog extends React.Component {
     this.props.history.push({ pathname: `/blogs/${blog.id}`, state: { blog } });
 
   render() {
-    const { blogPosts } = this.props;
+    const { location, blogPosts, loading, error } = this.props;
     return (
-      <div>
-        <BlogCardContainer
-          blogs={blogPosts}
-          onClick={blog => this.goToBlog(blog)}
-        />
-      </div>
+      <BlogList
+        categoryUrl={location}
+        loading={loading}
+        error={error}
+        data={blogPosts}
+        goToBlog={blog => this.goToBlog(blog)}
+      />
     );
   }
 }
@@ -50,10 +55,15 @@ Blog.propTypes = {
   getBlogPosts: PropTypes.func.isRequired,
   match: PropTypes.object,
   history: PropTypes.object,
+  loading: PropTypes.bool,
+  error: PropTypes.bool,
+  location: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
   blogPosts: makeSelectBlog(),
+  loding: makeSelectLoading(),
+  error: makeSelectError(),
 });
 
 function mapDispatchToProps(dispatch) {
