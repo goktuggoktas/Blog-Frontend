@@ -12,8 +12,6 @@ import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import SearchIcon from '@material-ui/icons/Search';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -72,7 +70,6 @@ export class Navigation extends React.Component {
       <React.Fragment>
         <CssBaseline />
         <Toolbar className={classes.toolbarMain}>
-          <Button size="small">Subscribe</Button>
           <Typography
             component="h1"
             variant="headline"
@@ -83,17 +80,20 @@ export class Navigation extends React.Component {
           >
             Blogger
           </Typography>
-          <IconButton>
-            <SearchIcon />
-          </IconButton>
-          <Button variant="outlined" size="small">
-            Sign in
+          <Button
+            variant="outlined"
+            size="small"
+            onClick={() => this.props.history.push('/admin')}
+          >
+            {window.localStorage.getItem('accessToken')
+              ? 'Sign out'
+              : 'Sign in'}
           </Button>
         </Toolbar>
         <Toolbar variant="dense" className={classes.toolbarSecondary}>
           {categories.map(category => (
             <Typography
-              color="secondary"
+              color="textSecondary"
               noWrap
               key={category.id}
               onClick={() => this.gotoCategory(category)}

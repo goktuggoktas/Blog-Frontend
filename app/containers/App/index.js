@@ -17,6 +17,7 @@ import Blog from 'containers/Blog/Loadable';
 import Home from '../Home/Loadable';
 import Navbar from '../../components/Spesific/Navbar';
 import BlogShow from '../BlogShow';
+import Admin from '../Admin/Loadable';
 
 const styles = theme => ({
   layout: {
@@ -52,6 +53,8 @@ export class App extends React.Component {
             <Route exact path="/" component={Home} />
             <Route path="/categories/:id" component={Blog} />
             <Route path="/blogs/:id" component={BlogShow} />
+            <Route path="/admin" component={Admin} />
+
             <Route path="" component={NotFoundPage} />
           </Switch>
         </div>
